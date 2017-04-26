@@ -7,8 +7,10 @@
 <h1>{{ first }} {{ last }}</h1>
 
 <p>Github Account: {{ github }}</p>
-{% for }
-<ul>
+{% for grade in grades %}
+<ul><a href="/project?title={{ grade[0] }}">{{ grade[0] }}</a>
+    <li>{{ grade[1]}}</li>
 </ul>
+{% endfor %}
 </body>
 </html>

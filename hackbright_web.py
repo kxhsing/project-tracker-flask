@@ -15,14 +15,31 @@ def get_student():
 
     first, last, github = hackbright.get_student_by_github(github)
     # import pdb; pdb.set_trace()
-    row = hackbright.get_grades_by_github(github)
+    grades = hackbright.get_grades_by_github(github)
+    print grades
     html = render_template("student_info.html",
                             first=first,
                             last=last,
-                            github=github)
+                            github=github,
+                            grades=grades)
 
     
     return html
+
+@app.route("/project")
+def get_project_info():
+    """Show project information on project information page"""
+    
+    title = request.args.get("title")
+    title, description, max_grade = hackbright.get_project_by_title(title)
+
+    
+    return render_template("project_info.html",
+                            title=title,
+                            description=description,
+                            max_grade=max_grade
+                            )
+
 
 @app.route("/student-search")
 def get_student_form():
