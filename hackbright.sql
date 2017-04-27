@@ -34,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: grades; Type: TABLE; Schema: public; Owner: user
+-- Name: grades; Type: TABLE; Schema: public; Owner: vagrant
 --
 
 CREATE TABLE grades (
@@ -44,10 +44,10 @@ CREATE TABLE grades (
 );
 
 
-ALTER TABLE grades OWNER TO "user";
+ALTER TABLE grades OWNER TO vagrant;
 
 --
--- Name: projects; Type: TABLE; Schema: public; Owner: user
+-- Name: projects; Type: TABLE; Schema: public; Owner: vagrant
 --
 
 CREATE TABLE projects (
@@ -58,10 +58,10 @@ CREATE TABLE projects (
 );
 
 
-ALTER TABLE projects OWNER TO "user";
+ALTER TABLE projects OWNER TO vagrant;
 
 --
--- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: user
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: vagrant
 --
 
 CREATE SEQUENCE projects_id_seq
@@ -72,17 +72,17 @@ CREATE SEQUENCE projects_id_seq
     CACHE 1;
 
 
-ALTER TABLE projects_id_seq OWNER TO "user";
+ALTER TABLE projects_id_seq OWNER TO vagrant;
 
 --
--- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: user
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: vagrant
 --
 
 ALTER SEQUENCE projects_id_seq OWNED BY projects.id;
 
 
 --
--- Name: students; Type: TABLE; Schema: public; Owner: user
+-- Name: students; Type: TABLE; Schema: public; Owner: vagrant
 --
 
 CREATE TABLE students (
@@ -92,17 +92,17 @@ CREATE TABLE students (
 );
 
 
-ALTER TABLE students OWNER TO "user";
+ALTER TABLE students OWNER TO vagrant;
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: user
+-- Name: id; Type: DEFAULT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
 
 
 --
--- Data for Name: grades; Type: TABLE DATA; Schema: public; Owner: user
+-- Data for Name: grades; Type: TABLE DATA; Schema: public; Owner: vagrant
 --
 
 COPY grades (student_github, project_title, grade) FROM stdin;
@@ -114,7 +114,7 @@ sdevelops	Blockly	100
 
 
 --
--- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: user
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: vagrant
 --
 
 COPY projects (id, title, description, max_grade) FROM stdin;
@@ -124,14 +124,14 @@ COPY projects (id, title, description, max_grade) FROM stdin;
 
 
 --
--- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: user
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: vagrant
 --
 
 SELECT pg_catalog.setval('projects_id_seq', 2, true);
 
 
 --
--- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: user
+-- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: vagrant
 --
 
 COPY students (first_name, last_name, github) FROM stdin;
@@ -148,7 +148,7 @@ Joe	Coffee	jcoffee
 
 
 --
--- Name: projects_pkey; Type: CONSTRAINT; Schema: public; Owner: user
+-- Name: projects_pkey; Type: CONSTRAINT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY projects

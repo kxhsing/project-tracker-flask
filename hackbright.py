@@ -37,6 +37,29 @@ def get_student_by_github(github):
 
     return row
 
+def get_all_students():
+    QUERY = """
+        SELECT first_name, last_name, github
+        FROM students
+        """
+
+    db_cursor = db.session.execute(QUERY)
+
+    student_names = db_cursor.fetchall()
+
+    return student_names
+
+def get_all_projects():
+    QUERY = """
+        SELECT title
+        FROM projects
+        """
+
+    db_cursor = db.session.execute(QUERY)
+
+    project_names = db_cursor.fetchall()
+
+    return project_names
 
 def make_new_student(first_name, last_name, github):
     """Add a new student and print confirmation.
@@ -83,8 +106,8 @@ def get_grade_by_github_title(github, title):
     """Print grade student received for a project."""
 
     QUERY = """
-        SELECT grade, title
-        FROM Grades
+        SELECT grade
+        FROM grades
         WHERE student_github = :github
           AND project_title = :title
         """
@@ -141,8 +164,9 @@ def get_grades_by_title(title):
     """Get a list of all student grades for a project by its title"""
 
     QUERY = """
-        SELECT student_github, grade
+        SELECT student_github, grade, students.first_name, students.last_name
         FROM Grades
+        JOIN students ON (students.github = grades.student_github)
         WHERE project_title = :title
         """
 
